@@ -10,7 +10,7 @@ The first step is to buy the needed hardware
 ## Preparation
 Now it's time for the setup.
 
-### Welding
+### Soldering
 You can now replace carefully your crystal
 
 ### Plug-in time
@@ -20,7 +20,6 @@ There are three pins on the transmitter:
 3. GND (Ground)
 
 You need to connect all of them to the [Raspberry Pi GPIO.](https://www.raspberrypi.org/documentation/usage/gpio/)
-
 1. Connect the ATAD pin with GPIO 4 (or adapt for your needs)
 2. VCC with 5V
 3. GND with any GND pin on the Raspberry Pi
