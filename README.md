@@ -1,7 +1,8 @@
 # SomPi
 The objectif of this project is to control my Somfy shaders from my Raspberry Pi without using the official remote.
 My current remote is a [Smoove Origin RTS](https://boutique.somfy.fr/smoove-origin-rts.html)
-Let's play with SomPi
+
+Let's play with SomPi!
 
 ## Hardware - What do you need?
 The first step is to buy the needed hardware.
@@ -55,6 +56,10 @@ That's it! Well done!
 ## Commands
 
 Open: `sudo python controller.py livingRoom open`
+
 Close: `sudo python controller.py livingRoom close`
+
 Stop: `sudo python controller.py livingRoom stop`
+
 Register:`sudo python controller.py livingRoom register`
+
