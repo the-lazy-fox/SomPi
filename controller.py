@@ -21,12 +21,14 @@ def envoi_commande(room, action): #Sending a frame
    print "Room    :      " + room
    
    #Defining button action
-   if action == "up":
+   if action == "open":
       bouton = btnUp
-   elif action == "down":
+   elif action == "close":
       bouton = btnDown
    elif action == "stop":
       bouton = btnStop
+   elif action == "register":
+      bouton = btnProg
    else:
       print "Unknown button"
    print "Action  :      " + action
