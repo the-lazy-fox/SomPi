@@ -40,6 +40,8 @@ You can easily get a simple SomPi controller to manage your shaders with the fol
 `git --version && python --version`
 3. Then clone this lovely repository
 `sudo git clone https://github.com/alxlaxv/SomPi.git`
+4. Enter in SomPi
+`cd SomPi`
 
 ## Configuration
 Now you will need to register your emitter as a remote for your shaders.
