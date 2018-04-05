@@ -61,5 +61,5 @@ Close: `sudo python controller.py livingRoom close`
 
 Stop: `sudo python controller.py livingRoom stop`
 
-Register:`sudo python controller.py livingRoom register`
+Register: `sudo python controller.py livingRoom register`
 
