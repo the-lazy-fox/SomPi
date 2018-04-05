@@ -34,8 +34,8 @@ You need to connect all of them to the [Raspberry Pi GPIO.](https://www.raspberr
 
 ## Installation
 You can easily get a simple SomPi controller to manage your shaders with the following instructions:
-1. Install git and python 
-`sudo apt-get update && sudo apt-get install git python`
+1. Install dependencies
+`sudo apt-get update && sudo apt-get install git python python-pigpio`
 2. Verify that everything is well installed
 `git --version && python --version`
 3. Then clone this lovely repository
