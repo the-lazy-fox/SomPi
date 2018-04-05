@@ -43,6 +43,8 @@ You can easily get a simple SomPi controller to manage your shaders with the fol
 `sudo git clone https://github.com/alxlaxv/SomPi.git`
 4. Enter in SomPi
 `cd SomPi`
+5. Make the controller executable
+`sudo chmod +x controller.py`
 
 ## Configuration
 Now you will need to register your emitter as a remote for your shaders.
@@ -56,13 +58,10 @@ And then close your shaders to test the pairing
 
 That's it! Well done!
 
-## Commands
+## Available commands
 
-Open: `sudo python controller.py livingRoom open`
-
-Close: `sudo python controller.py livingRoom close`
-
-Stop: `sudo python controller.py livingRoom stop`
-
-Register: `sudo python controller.py livingRoom register`
+* Open: `sudo python controller.py livingRoom open`
+* Close: `sudo python controller.py livingRoom close`
+* Stop: `sudo python controller.py livingRoom stop`
+* Register: `sudo python controller.py livingRoom register`
 
