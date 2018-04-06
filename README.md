@@ -45,6 +45,10 @@ You can easily install the python controller with the following instructions:
 `cd SomPi`
 5. Make the controller executable
 `sudo chmod +x controller.py`
+6. Launch pigpio daemon 
+`sudo pigpiod`
+7. Launch pigpio daemon automatically on every boot 
+`TODO`
 
 ## Configuration
 Now you will need to register your emitter as a remote for your shaders.
@@ -64,4 +68,3 @@ That's it! Well done!
 * Close: `sudo python controller.py livingRoom close`
 * Stop: `sudo python controller.py livingRoom stop`
 * Register: `sudo python controller.py livingRoom register`
-
