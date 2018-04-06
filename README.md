@@ -1,5 +1,5 @@
 # SomPi
-The objectif of this project is to control my Somfy shaders from my Raspberry Pi without using the official remote.
+The objectif of this project is to control your Somfy shaders from a Raspberry Pi.
 My current remote is a [Smoove Origin RTS](https://boutique.somfy.fr/smoove-origin-rts.html)
 
 Let's play with SomPi!
