@@ -34,12 +34,12 @@ You need to connect all of them to the [Raspberry Pi GPIO.](https://www.raspberr
 3. GND with any GND pin on the Raspberry Pi
 
 ## Installation
-You can easily get a simple SomPi controller to manage your shaders with the following instructions:
+You can easily install the python controller with the following instructions:
 1. Install dependencies
 `sudo apt-get update && sudo apt-get install git python pigpio python-pigpio python3-pigpio`
 2. Verify that everything is well installed
 `git --version && python --version`
-3. Then clone this lovely repository
+3. Then clone this repository
 `sudo git clone https://github.com/alxlaxv/SomPi.git`
 4. Enter in SomPi
 `cd SomPi`
