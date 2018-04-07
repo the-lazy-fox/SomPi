@@ -48,7 +48,7 @@ You can easily install the python controller with the following instructions:
 6. Launch pigpio daemon 
 `sudo pigpiod`
 7. Launch pigpio daemon automatically on every boot 
-`TODO`
+`sudo systemctl enable pigpiod.service`
 
 ## Configuration
 Now you will need to register your emitter as a remote for your shaders.
