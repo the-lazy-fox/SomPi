@@ -15,10 +15,10 @@ btnProg = 0x8
 
 frame = bytearray(7)
 
-def envoi_commande(room, action): #Sending a frame
+#Function to send a frame
+def send(room, action):
+
    checksum = 0
-   #Printing Room name
-   print "Room    :      " + room
    
    #Defining button action
    if action == "open":
@@ -30,11 +30,17 @@ def envoi_commande(room, action): #Sending a frame
    elif action == "register":
       bouton = btnProg
    else:
-      print "Unknown button"
-   print "Action  :      " + action
+      print "Unknown action."
+      print "Please use open, close, stop or register."
+      sys.exit() 
+   print "Action       : " + action
+   
+   #Defining room
+   print "Room         : " + room
    
    #Reading remote
-   with open("remotes/" + room + ".txt", 'r') as file:# the files are un a subfolder "somfy"
+   #The files are stored in a subfolder called "remotes"
+   with open("remotes/" + room + ".txt", 'r') as file:
       data = file.readlines()
 
    remote = int(data[0], 16)
@@ -44,28 +50,27 @@ def envoi_commande(room, action): #Sending a frame
    with open("remotes/" + room + ".txt", 'w') as file:
       file.writelines(data)
 
-   pi = pigpio.pi() # connect to Pi
-
+   #Connecting to Pi
+   pi = pigpio.pi() 
    if not pi.connected:
       exit()
 
    pi.wave_add_new()
    pi.set_mode(TXGPIO, pigpio.OUTPUT)
 
-   print "Remote  :      " + "0x%0.2X" % remote
-   print "Button  :      " + "0x%0.2X" % bouton
+   print "Remote       : " + "0x%0.2X" % remote
+   print "Button       : " + "0x%0.2X" % bouton
    print "Rolling code : " + str(code)
-   print ""
-
-   frame[0] = 0xA7;       # Encryption key. Doesn't matter much
-   frame[1] = bouton << 4 # Which button did  you press? The 4 LSB will be the checksum
+   
+   frame[0] = 0xA7;                   # Encryption key. Doesn't matter much
+   frame[1] = bouton << 4             # Which action did you chose? The 4 LSB will be the checksum
    frame[2] = code >> 8               # Rolling code (big endian)
    frame[3] = (code & 0xFF)           # Rolling code
    frame[4] = remote >> 16            # Remote address
    frame[5] = ((remote >>  8) & 0xFF) # Remote address
    frame[6] = (remote & 0xFF)         # Remote address
 
-   print "Frame  :    ",
+   print "Frame        :",
    for octet in frame:
       print "0x%0.2X" % octet,
    print ""
@@ -77,7 +82,7 @@ def envoi_commande(room, action): #Sending a frame
 
    frame[1] |= checksum;
 
-   print "With cks  : ",
+   print "With cks     :",
    for octet in frame:
       print "0x%0.2X" % octet,
    print ""
@@ -85,7 +90,7 @@ def envoi_commande(room, action): #Sending a frame
    for i in range(1, 7):
       frame[i] ^= frame[i-1];
 
-   print "Obfuscated :",
+   print "Obfuscated   :",
    for octet in frame:
       print "0x%0.2X" % octet,
    print ""
@@ -153,5 +158,12 @@ def envoi_commande(room, action): #Sending a frame
    pi.wave_delete(wid)
 
    pi.stop()
-   
-envoi_commande(sys.argv[1], sys.argv[2])
+
+#Calling send function with args
+if len(sys.argv) > 2:
+   send(sys.argv[1], sys.argv[2])
+else:
+   #Exiting if not enough args
+   print "Action is missing."
+   print "Please use open, close, stop or register as second argument."
+   sys.exit()
