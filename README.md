@@ -1,5 +1,5 @@
 # SomPi
-The objectif of this project is to control my Somfy shaders from my Raspberry Pi without using the official remote.
+The objectif of this project is to control your Somfy shaders from a Raspberry Pi.
 My current remote is a [Smoove Origin RTS](https://boutique.somfy.fr/smoove-origin-rts.html)
 
 Let's play with SomPi!
@@ -34,17 +34,21 @@ You need to connect all of them to the [Raspberry Pi GPIO.](https://www.raspberr
 3. GND with any GND pin on the Raspberry Pi
 
 ## Installation
-You can easily get a simple SomPi controller to manage your shaders with the following instructions:
+You can easily install the python controller with the following instructions:
 1. Install dependencies
 `sudo apt-get update && sudo apt-get install git python pigpio python-pigpio python3-pigpio`
 2. Verify that everything is well installed
 `git --version && python --version`
-3. Then clone this lovely repository
+3. Then clone this repository
 `sudo git clone https://github.com/alxlaxv/SomPi.git`
 4. Enter in SomPi
 `cd SomPi`
 5. Make the controller executable
 `sudo chmod +x controller.py`
+6. Launch pigpio daemon 
+`sudo pigpiod`
+7. Launch pigpio daemon automatically on every boot 
+`TODO`
 
 ## Configuration
 Now you will need to register your emitter as a remote for your shaders.
@@ -64,4 +68,3 @@ That's it! Well done!
 * Close: `sudo python controller.py livingRoom close`
 * Stop: `sudo python controller.py livingRoom stop`
 * Register: `sudo python controller.py livingRoom register`
-
