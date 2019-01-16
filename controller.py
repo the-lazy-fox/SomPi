@@ -8,9 +8,9 @@ import traceback
 TXGPIO=4 # 433.42 MHz emitter on GPIO 4
 
 #Button values
-btnDown = 0x1
+btnDown = 0x4
 btnUp = 0x2
-btnStop = 0x4
+btnStop = 0x1
 btnProg = 0x8
 
 frame = bytearray(7)
