@@ -1,11 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import sys
 import pigpio
 import traceback
 
-TXGPIO=4 # 433.42 MHz emitter on GPIO 4
+TXGPIO=18 # 433.42 MHz emitter on GPIO 4
 
 #Button values
 btnDown = 0x4
@@ -30,13 +30,13 @@ def send(room, action):
    elif action == "register":
       bouton = btnProg
    else:
-      print "Unknown action."
-      print "Please use open, close, stop or register."
+      print("Unknown action.")
+      print("Please use open, close, stop or register.")
       sys.exit() 
-   print "Action       : " + action
+   print("Action       : " + action)
    
    #Defining room
-   print "Room         : " + room
+   print("Room         : " + room)
    
    #Reading remote
    #The files are stored in a subfolder called "remotes"
@@ -58,9 +58,9 @@ def send(room, action):
    pi.wave_add_new()
    pi.set_mode(TXGPIO, pigpio.OUTPUT)
 
-   print "Remote       : " + "0x%0.2X" % remote
-   print "Button       : " + "0x%0.2X" % bouton
-   print "Rolling code : " + str(code)
+   print("Remote       : " + "0x%0.2X" % remote)
+   print("Button       : " + "0x%0.2X" % bouton)
+   print("Rolling code : " + str(code))
    
    frame[0] = 0xA7;                   # Encryption key. Doesn't matter much
    frame[1] = bouton << 4             # Which action did you chose? The 4 LSB will be the checksum
@@ -70,10 +70,10 @@ def send(room, action):
    frame[5] = ((remote >>  8) & 0xFF) # Remote address
    frame[6] = (remote & 0xFF)         # Remote address
 
-   print "Frame        :",
+   print("Frame        :",)
    for octet in frame:
-      print "0x%0.2X" % octet,
-   print ""
+      print("0x%0.2X" % octet,)
+   print("")
 
    for i in range(0, 7):
       checksum = checksum ^ frame[i] ^ (frame[i] >> 4)
@@ -82,18 +82,18 @@ def send(room, action):
 
    frame[1] |= checksum;
 
-   print "With cks     :",
+   print("With cks     :",)
    for octet in frame:
-      print "0x%0.2X" % octet,
-   print ""
+      print("0x%0.2X" % octet,)
+   print("")
 
    for i in range(1, 7):
       frame[i] ^= frame[i-1];
 
-   print "Obfuscated   :",
+   print("Obfuscated   :",)
    for octet in frame:
-      print "0x%0.2X" % octet,
-   print ""
+      print("0x%0.2X" % octet,)
+   print("")
 
    
 #Telling what you want to send
@@ -107,7 +107,7 @@ def send(room, action):
    wf.append(pigpio.pulse(0, 1<<TXGPIO,  640))
 
    for i in range (0, 56):
-      if ((frame[i/8] >> (7 - (i%8))) & 1):
+      if ((frame[int(i/8)] >> (7 - (i%8))) & 1):
          wf.append(pigpio.pulse(0, 1<<TXGPIO, 640))
          wf.append(pigpio.pulse(1<<TXGPIO, 0, 640))
       else:
@@ -124,7 +124,7 @@ def send(room, action):
    wf.append(pigpio.pulse(0, 1<<TXGPIO,  640))
 
    for i in range (0, 56):
-      if ((frame[i/8] >> (7 - (i%8))) & 1):
+      if ((frame[int(i/8)] >> (7 - (i%8))) & 1):
          wf.append(pigpio.pulse(0, 1<<TXGPIO, 640))
          wf.append(pigpio.pulse(1<<TXGPIO, 0, 640))
       else:
@@ -141,7 +141,7 @@ def send(room, action):
    wf.append(pigpio.pulse(0, 1<<TXGPIO,  640))
 
    for i in range (0, 56):
-      if ((frame[i/8] >> (7 - (i%8))) & 1):
+      if ((frame[int(i/8)] >> (7 - (i%8))) & 1):
          wf.append(pigpio.pulse(0, 1<<TXGPIO, 640))
          wf.append(pigpio.pulse(1<<TXGPIO, 0, 640))
       else:
@@ -164,6 +164,6 @@ if len(sys.argv) > 2:
    send(sys.argv[1], sys.argv[2])
 else:
    #Exiting if not enough args
-   print "Action is missing."
-   print "Please use open, close, stop or register as second argument."
+   print("Action is missing.")
+   print("Please use open, close, stop or register as second argument.")
    sys.exit()
