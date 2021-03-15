@@ -5,7 +5,7 @@ import sys
 import pigpio
 import traceback
 
-TXGPIO=18 # 433.42 MHz emitter on GPIO 4
+TXGPIO=4 # 433.42 MHz emitter on GPIO 4
 
 #Button values
 btnDown = 0x4
